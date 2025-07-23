@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,4 +18,279 @@
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Expectancy Predictor</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-heartbeat"></i> Life Expectancy Predictor</h1>
+                <p>AI-powered health assessment to predict life expectancy based on lifestyle factors</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="form-container">
+                <h2>Health Assessment Form</h2>
+                <p class="form-description">Please provide accurate information for the most reliable prediction. All data is processed locally and kept private.</p>
+                
+                <form id="healthForm" class="health-form">
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Basic Information</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="age">Age *</label>
+                                <input type="number" id="age" name="age" min="18" max="120" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender *</label>
+                                <select id="gender" name="gender" required>
+                                    <option value="">Select gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="height">Height (cm) *</label>
+                                <input type="number" id="height" name="height" min="100" max="250" step="0.1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="weight">Weight (kg) *</label>
+                                <input type="number" id="weight" name="weight" min="30" max="300" step="0.1" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-running"></i> Lifestyle Factors</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="activity">Activity Level *</label>
+                                <select id="activity" name="activity" required>
+                                    <option value="">Select activity level</option>
+                                    <option value="sedentary">Sedentary (little to no exercise)</option>
+                                    <option value="light">Light (1-3 days/week)</option>
+                                    <option value="moderate">Moderate (3-5 days/week)</option>
+                                    <option value="active">Active (6-7 days/week)</option>
+                                    <option value="very_active">Very Active (intense daily exercise)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="diet">Diet Quality *</label>
+                                <select id="diet" name="diet" required>
+                                    <option value="">Select diet quality</option>
+                                    <option value="poor">Poor (processed foods, low nutrition)</option>
+                                    <option value="fair">Fair (some healthy choices)</option>
+                                    <option value="good">Good (mostly healthy, balanced)</option>
+                                    <option value="excellent">Excellent (whole foods, high nutrition)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="smoking">Smoking Status *</label>
+                                <select id="smoking" name="smoking" required>
+                                    <option value="">Select smoking status</option>
+                                    <option value="never">Never smoked</option>
+                                    <option value="former">Former smoker</option>
+                                    <option value="current">Current smoker</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="alcohol">Alcohol Consumption *</label>
+                                <select id="alcohol" name="alcohol" required>
+                                    <option value="">Select alcohol consumption</option>
+                                    <option value="none">None</option>
+                                    <option value="light">Light (1-2 drinks/week)</option>
+                                    <option value="moderate">Moderate (3-7 drinks/week)</option>
+                                    <option value="heavy">Heavy (8+ drinks/week)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="stress">Stress Level *</label>
+                                <select id="stress" name="stress" required>
+                                    <option value="">Select stress level</option>
+                                    <option value="low">Low (rarely stressed)</option>
+                                    <option value="medium">Medium (occasionally stressed)</option>
+                                    <option value="high">High (frequently stressed)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sleep">Sleep Hours per Night *</label>
+                                <input type="number" id="sleep" name="sleep" min="4" max="12" step="0.5" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-family"></i> Family History & Health</h3>
+                        
+                        <div class="form-group">
+                            <label>Family History (select all that apply)</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="family_history" value="diabetes">
+                                    <span>Diabetes</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="family_history" value="heart_disease">
+                                    <span>Heart Disease</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="family_history" value="cancer">
+                                    <span>Cancer</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="family_history" value="stroke">
+                                    <span>Stroke</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="family_history" value="hypertension">
+                                    <span>Hypertension</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="family_history" value="obesity">
+                                    <span>Obesity</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Chronic Conditions (select all that apply)</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="chronic_conditions" value="diabetes">
+                                    <span>Diabetes</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="chronic_conditions" value="hypertension">
+                                    <span>Hypertension</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="chronic_conditions" value="asthma">
+                                    <span>Asthma</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="chronic_conditions" value="arthritis">
+                                    <span>Arthritis</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="chronic_conditions" value="depression">
+                                    <span>Depression</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="chronic_conditions" value="anxiety">
+                                    <span>Anxiety</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-calculator"></i> Calculate Life Expectancy
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                            <i class="fas fa-redo"></i> Reset Form
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="results" class="results-container" style="display: none;">
+                <div class="results-header">
+                    <h2><i class="fas fa-chart-line"></i> Your Life Expectancy Prediction</h2>
+                    <div class="disclaimer">
+                        <i class="fas fa-info-circle"></i>
+                        <p>This is an educational tool based on statistical models. Always consult healthcare professionals for medical advice.</p>
+                    </div>
+                </div>
+
+                <div class="prediction-card">
+                    <div class="prediction-main">
+                        <div class="prediction-number">
+                            <span id="predictedYears">0</span>
+                            <span class="unit">years</span>
+                        </div>
+                        <div class="confidence-interval">
+                            <span>Confidence: </span>
+                            <span id="confidenceRange">0 - 0 years</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-sections">
+                    <div class="results-section">
+                        <h3><i class="fas fa-robot"></i> AI Analysis</h3>
+                        <div class="ai-prompt-section">
+                            <h4><i class="fas fa-comment"></i> Generated Prompt</h4>
+                            <div id="aiPrompt" class="ai-text-box"></div>
+                        </div>
+                        <div class="ai-response-section">
+                            <h4><i class="fas fa-brain"></i> AI Response</h4>
+                            <div id="aiResponse" class="ai-text-box"></div>
+                        </div>
+                    </div>
+
+                    <div class="results-section">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Risk Factors</h3>
+                        <ul id="riskFactors" class="factor-list"></ul>
+                    </div>
+
+                    <div class="results-section">
+                        <h3><i class="fas fa-lightbulb"></i> Recommendations</h3>
+                        <ul id="recommendations" class="factor-list"></ul>
+                    </div>
+
+                    <div class="results-section">
+                        <h3><i class="fas fa-chart-pie"></i> Factors Breakdown</h3>
+                        <div id="factorsBreakdown" class="factors-grid"></div>
+                    </div>
+                </div>
+
+                <div class="health-tips">
+                    <h3><i class="fas fa-heart"></i> General Health Tips</h3>
+                    <ul id="healthTips" class="tips-list"></ul>
+                </div>
+            </div>
+
+            <div id="loading" class="loading-container" style="display: none;">
+                <div class="loading-spinner"></div>
+                <p>Analyzing your health data...</p>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2024 Life Expectancy Predictor. Educational tool only - not medical advice.</p>
+                <p>Built on the Internet Computer for privacy and security.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@dfinity/agent@0.15.0/dist/cjs/index.js"></script>
+    <script src="script.js"></script>
+</body>
 </html>
