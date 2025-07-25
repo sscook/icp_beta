@@ -80,22 +80,22 @@ actor LifeExpectancy {
 
   // ---- LLM Integration Functions ----
   
-  // public func prompt(prompt_str: Text) : async Text {
-  //   // Simulate LLM call - in production, this would call actual LLM service
-  //   Debug.print("LLM Prompt: " # prompt_str);
-  //   await generateSimulatedAIResponse(prompt_str);
-  // };
+  public func prompt(prompt_str: Text) : async Text {
+    // Simulate LLM call - in production, this would call actual LLM service
+    Debug.print("LLM Prompt: " # prompt_str);
+    await generateSimulatedAIResponse(prompt_str);
+  };
 
-  // public func chat(messages: [ChatMessage]) : async Text {
-  //   // Simulate chat with LLM
-  //   Debug.print("LLM Chat with " # Nat.toText(messages.size()) # " messages");
-  //   let lastMessage = if (messages.size() > 0) {
-  //     messages[messages.size() - 1].content
-  //   } else {
-  //     "Hello"
-  //   };
-  //   await generateSimulatedAIResponse(lastMessage);
-  // };
+  public func chat(messages: [ChatMessage]) : async Text {
+    // Simulate chat with LLM
+    Debug.print("LLM Chat with " # Nat.toText(messages.size()) # " messages");
+    let lastMessage = if (messages.size() > 0) {
+      messages[messages.size() - 1].content
+    } else {
+      "Hello"
+    };
+    await generateSimulatedAIResponse(lastMessage);
+  };
 
   // ---- Main Prediction Function ----
   
@@ -218,7 +218,7 @@ actor LifeExpectancy {
   Returns the text response and age that the LLM provides
   */
 
-  private func chat(promptText: Text) : async Text {
+  public func chat2(promptText: Text) : async Text {
     let response = await LLM.chat(#Llama3_1_8B).withMessages([
       #system_ {
         content = promptText;
@@ -235,7 +235,8 @@ actor LifeExpectancy {
 
   private func callLLM(promptText: Text) : async Result.Result<(Text, Float), Text> {
     // return await LLM.prompt(#Llama3_1_8B, promptText);
-    var aiResponse = await chat(promptText);
+    // var aiResponse = await chat(promptText);
+    var aiResponse = await LLM.prompt(#Llama3_1_8B, promptText);
     let predictedAge = extractAgeFromResponse(aiResponse);
     #ok((aiResponse, predictedAge));
   };
@@ -377,7 +378,7 @@ actor LifeExpectancy {
   
   private func extractAgeFromResponse(response: Text) : Float {         //                    fix
     // Simple extraction - would be more sophisticated in production
-    78.8 // default
+    78.3
   };
   
   private func generateRiskFactors(healthData: HealthData) : [Text] {
